@@ -9,7 +9,7 @@ namespace ApiApp.Models
         public virtual Dictionary<string, string> Links { get; set; }
 
         [JsonProperty("next_page")]
-        public virtual string NextPage { get; set; }
+        public virtual string? NextPage { get; set; }
 
         [JsonProperty("wpcom")]
         public virtual bool IsWordpressCom { get; set; }
