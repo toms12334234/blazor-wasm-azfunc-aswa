@@ -1,13 +1,11 @@
 {
     "IsEncrypted": false,
     "Values": {
-      "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-      "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-  
-      "SITE__NAME": "0wnlife.wordpress.com"
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+        "SITE__NAME": "0wnlife.wordpress.com"
     },
     "Host": {
-      "CORS": "https://localhost:5001"
+        "CORS": "https://localhost:5001"
     }
-  }
-  
+}

@@ -30,7 +30,9 @@ namespace ApiApp
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            var requestUri = new Uri(string.Format(GetPosts, Environment.GetEnvironmentVariable("SITE__NAME")));
+            // string url = string.Format(GetPosts, Environment.GetEnvironmentVariable("SITE__NAME"));
+            string url = string.Format(GetPosts, "0wnlife.wordpress.com");
+            var requestUri = new Uri(url);
 
             var json = await http.GetStringAsync(requestUri).ConfigureAwait(false);
             var posts = JsonConvert.DeserializeObject<PostCollection>(json);
