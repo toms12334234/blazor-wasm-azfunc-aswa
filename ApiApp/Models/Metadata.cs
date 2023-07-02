@@ -6,7 +6,7 @@ namespace ApiApp.Models
 {
     public class Metadata
     {
-        public virtual Dictionary<string, string> Links { get; set; }
+        public virtual Dictionary<string, string> Links { get; set; } = new();
 
         [JsonProperty("next_page")]
         public virtual string? NextPage { get; set; }

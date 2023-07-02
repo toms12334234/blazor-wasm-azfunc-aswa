@@ -8,11 +8,11 @@ namespace ApiApp.Models
         public virtual int AuthorId { get; set; }
 
         [JsonProperty("first_name")]
-        public virtual string FirstName { get; set; }
+        public virtual string FirstName { get; set; } = "tom";
 
         [JsonProperty("last_name")]
-        public virtual string Surname { get; set; }
+        public virtual string Surname { get; set; } = "schenkels";
 
-        public virtual string Name { get; set; }
+        public virtual string Name { get; set; } = "toms";
     }
 }
