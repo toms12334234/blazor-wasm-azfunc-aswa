@@ -28,7 +28,7 @@ namespace ApiApp
             [HttpTrigger(AuthorizationLevel.Anonymous, "GET", Route = "posts")] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
+            log?.LogInformation("C# HTTP trigger function processed a request.");
 
             // string url = string.Format(GetPosts, Environment.GetEnvironmentVariable("SITE__NAME"));
             string url = string.Format(GetPosts, "0wnlife.wordpress.com");
