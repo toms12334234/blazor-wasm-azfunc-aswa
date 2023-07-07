@@ -21,8 +21,6 @@ namespace ApiApp.Models
         [JsonProperty("URL")]
         public virtual string Url { get; set; } = "newUrl";
 
-        public virtual string Excerpt { get; set; } = "newExcerpt";
-
         public virtual string Content { get; set; } = "newContent";
 
         public virtual Dictionary<string, Category> Categories { get; set; } = new();
