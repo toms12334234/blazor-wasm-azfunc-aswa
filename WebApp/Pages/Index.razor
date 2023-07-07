@@ -16,13 +16,24 @@ Welcome to your new app.
 }
 else
 {
+    
+            @* Debug.Write("PostCollection: [");
+            foreach (var post in postCollection.Posts)
+            {
+                Debug.Write(post);
+                Debug.Write(", ");
+
+            }
+            Debug.Write("]"); *@
+
+
     <table class="table">
         <thead>
             <tr>
                 <th>Date</th>
                 <th>Author</th>
                 <th>Title</th>
-                <th>Excerpt</th>
+                <th>Categories</th>
             </tr>
         </thead>
         <tbody>
@@ -32,7 +43,7 @@ else
                     <td>@post.Date.ToString()</td>
                     <td>@post.Author.Name</td>
                     <td><a href="@post.URL">@post.Title</a></td>
-                    <td>@((MarkupString)post.Excerpt)</td>
+                    <td>@post</td>
                 </tr>
             }
         </tbody>

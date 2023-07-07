@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 using ApiApp.Models;
@@ -20,7 +21,7 @@ namespace ApiApp
     {
         private const string GetPosts = "https://public-api.wordpress.com/rest/v1.1/sites/{0}/posts";
         private static HttpClient http = new HttpClient();
-        
+
         [FunctionName("PostHttpTrigger")]
         [OpenApiOperation(operationId: "posts.get", tags: new[] { "posts" })]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(PostCollection), Description = "The OK response")]
@@ -35,9 +36,16 @@ namespace ApiApp
             var requestUri = new Uri(url);
 
             var json = await http.GetStringAsync(requestUri).ConfigureAwait(false);
-            var posts = JsonConvert.DeserializeObject<PostCollection>(json);
+            var postCollection = JsonConvert.DeserializeObject<PostCollection>(json);
+            Debug.Write("PostCollection: [");
+            foreach (var post in postCollection.Posts)
+            {
+                Debug.Write(post);
+                Debug.Write(", ");
 
-            return new OkObjectResult(posts);
+            }
+            Debug.Write("]");
+            return new OkObjectResult(postCollection);
         }
     }
 }

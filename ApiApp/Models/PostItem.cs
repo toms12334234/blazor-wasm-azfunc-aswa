@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+
 
 using Newtonsoft.Json;
 
@@ -22,5 +24,9 @@ namespace ApiApp.Models
         public virtual string Excerpt { get; set; } = "newExcerpt";
 
         public virtual string Content { get; set; } = "newContent";
+
+        public virtual Dictionary<string, Category> Categories { get; set; } = new();
+
+        public override string ToString() => $"Title: '{Title}', Categories: [{string.Join(',', Categories.Keys)}]";
     }
 }
