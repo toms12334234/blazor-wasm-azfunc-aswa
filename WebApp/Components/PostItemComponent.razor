@@ -1,0 +1,27 @@
+@namespace ApiApp.Components
+
+@using WebApp.Proxies
+@code {
+    [Parameter]
+    public List<PostItem>? Posts { get; set; }
+}
+
+@if (Posts != null && Posts.Count > 0)
+{
+    <h2>MyCategoryName</h2>
+
+    @foreach (var post in Posts)
+    {
+        <div>
+            <h3>@post.Title</h3>
+            <p>Author: @post.Author.Name</p>
+            @* <p>Date Published: @post.DatePublished.ToString("yyyy-MM-dd")</p> *@
+            @* <p>URL: <a href="@post.Url">@post.Url</a></p> *@
+            <p>Content: @post.Content</p>
+        </div>
+    }
+}
+else
+{
+    <p>No posts found for the category.</p>
+}

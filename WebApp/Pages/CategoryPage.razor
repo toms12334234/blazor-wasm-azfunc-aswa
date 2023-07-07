@@ -1,0 +1,39 @@
+@page "/category/{categoryId}"
+@using WebApp.Proxies
+
+@using ApiApp.Components
+
+
+
+@inject ReferenceApi Api
+
+
+<h1>Posts by Category</h1>
+
+@if (CategoryPosts == null)
+{
+    <p>Loading category...</p>
+}
+else
+{
+    <PostItemComponent Posts="CategoryPosts" Category="Category" />
+}
+
+@code {
+    [Parameter]
+    public string? categoryId { get; set; }
+
+    public List<PostItem>? CategoryPosts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+
+            var collection = await Api.Posts_getAsync().ConfigureAwait(false);
+            CategoryPosts = collection?.Posts.ToList();
+            @* categoryPosts = collection?.Posts.Where(x=>x.Id==categoryId).ToList(); *@
+        }
+        catch { }
+    }
+}

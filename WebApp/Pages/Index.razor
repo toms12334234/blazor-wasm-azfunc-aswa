@@ -44,7 +44,12 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var collection = await Api.Posts_getAsync().ConfigureAwait(false);
-        posts = collection?.Posts.ToList();
+        try
+        {
+
+            var collection = await Api.Posts_getAsync().ConfigureAwait(false);
+            posts = collection?.Posts.ToList();
+        }
+        catch { }
     }
 }
