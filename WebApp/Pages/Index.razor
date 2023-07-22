@@ -1,46 +1,25 @@
 @page "/"
 @using WebApp.Proxies
 @inject ReferenceApi Api
+@using ApiApp.Components
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Posts by Category</h1>
 
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
-
-@if (posts == null)
+@if (CategoryPosts == null)
 {
-    <p><em>Loading...</em></p>
+    <p>Loading category...</p>
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Author</th>
-                <th>Title</th>
-                <th>Categories</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var post in posts)
-            {
-                <tr>
-                    <td>@post.Date.ToString()</td>
-                    <td>@post.Author.Name</td>
-                    <td><a href="@post.URL">@post.Title</a></td>
-                    <td>@post</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <PostItemComponent Posts="CategoryPosts" Category="Category" />
 }
 
 @code {
-    private List<PostItem>? posts;
+    public string? categoryId { get; set; } = 6730;
+
+    public List<PostItem>? CategoryPosts;
 
     protected override async Task OnInitializedAsync()
     {
@@ -48,7 +27,8 @@ else
         {
 
             var collection = await Api.Posts_getAsync().ConfigureAwait(false);
-            posts = collection?.Posts.ToList();
+            CategoryPosts = collection?.Posts.ToList();
+            @* categoryPosts = collection?.Posts.Where(x=>x.Id==categoryId).ToList(); *@
         }
         catch { }
     }
