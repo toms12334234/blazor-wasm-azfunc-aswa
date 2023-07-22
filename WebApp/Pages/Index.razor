@@ -27,7 +27,7 @@ else
         {
             var collection = await Api.Posts_getAsync().ConfigureAwait(false);
             CategoryPosts = collection?.Posts.ToList();
-            CategoryPosts = collection?.Posts.Where(x=> x.Categorie.Any(y=>y.CategoryName==categoryName)).ToList();
+            CategoryPosts = collection?.Posts.Where(x=> x.Categories.Any(y=>y.CategoryName==categoryName)).ToList();
         }
         catch { }
     }
