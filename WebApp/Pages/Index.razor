@@ -17,7 +17,7 @@ else
 }
 
 @code {
-    @* public string? categoryId { get; set; } = 6730; *@
+    public string? categoryName { get; set; } = "coquille";
 
     public List<PostItem>? CategoryPosts;
 
@@ -25,10 +25,9 @@ else
     {
         try
         {
-
             var collection = await Api.Posts_getAsync().ConfigureAwait(false);
             CategoryPosts = collection?.Posts.ToList();
-            @* categoryPosts = collection?.Posts.Where(x=>x.Id==categoryId).ToList(); *@
+            CategoryPosts = collection?.Posts.Where(x=> x.Categorie.Any(y=>y.CategoryName==categoryName)).ToList();
         }
         catch { }
     }
